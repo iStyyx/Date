@@ -7,6 +7,14 @@
     $destinationTimeFormat = $destinationTime->format("M d Y A h i");
     $presentDate = explode(" ",$presentTimeFormat);
     $destinationDate = explode(" ", $destinationTimeFormat);   
+
+    $intervalTime = $destinationTime->diff($presentTime);
+    $intervalDays = $interval->days;
+    $intervalMinutes = getMinutes($intervalDays);
+    function getMinutes($days)
+    {
+        return $days*24*60;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +67,20 @@
             <td><?= $presentDate[1];?></td>
             <td><?= $presentDate[2];?></td>
             <td><?= $presentDate[4] . ':' . $presentDate[5];?></td>
+        </tr>
+        <tr>
+            <td><strong>Interval </strong></td>
+            <td><strong>between </strong></td>
+            <td><strong>those </strong></td>
+            <td><strong>two </strong></td>
+            <td><strong>dates</strong></td>
+        </tr>
+        <tr>
+            <td><?= $intervalTime->format('%Y years '); ?></td>
+            <td><?= $intervalTime->format('%M months '); ?></td>
+            <td><?= $intervalTime->format('%D days '); ?></td>
+            <td><?= $intervalTime->format('%H hours '); ?></td>
+            <td><?= $intervalTime->format('%I minutes'); ?></td>
         </tr>
     </table>
 </body>
